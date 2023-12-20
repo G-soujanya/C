@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include<string.h>
+struct student{
+    char name[10];
+    int id;
+};
+
+int main() {
+    // Write C code here
+    struct student s1;
+    strcpy(s1.name,"soujanya");
+    s1.id=10;
+    printf("%s\n",s1.name);
+    printf("%d",s1.id);
+
+    return 0;
+}
+//passing reference
+#include <stdio.h>
+#include<string.h>
+typedef struct student{
+    char name[10];
+    int id;
+}stu;
+stu fun(stu s){
+    s.id=161;
+    return s;
+}
+int main() {
+    // Write C code here
+    stu s1;
+    stu s2;
+    s1.id=10;
+    printf("%d\n",s1.id);
+    s2=fun(s1);
+    printf("%d",s2.id);
+    return 0;
+}
+//dynamic memory allocation
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+typedef struct student{
+    char name[10];
+    int id;
+}stu;
+int main() {
+    // Write C code here
+    stu *s1=(stu *)malloc(3*sizeof(stu));
+    s1->id=160;
+    (s1+1)->id=161;
+    printf("%d\n",s1->id);
+    printf("%d",(s1+1)->id);
+    return 0;
+}
+//union
+#include <stdio.h>
+typedef union student{
+    double l;
+    int id;
+}stu;
+int main() {
+    // Write C code here
+   printf("%d",sizeof(stu));
+    return 0;
+}
+//shared memory/same memory
+#include <stdio.h>
+typedef union student{
+    float marks;
+    int id;
+}stu;
+int main() {
+    // Write C code here
+   stu s1;
+   s1.marks=10.0;
+   printf("%f\n",s1.marks);
+   s1.id=161;
+   printf("%f\n",s1.marks);
+   printf("%d",s1.id);
+}
